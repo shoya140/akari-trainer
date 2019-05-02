@@ -1,0 +1,3 @@
+[submodule "yukarin"]
+	path = yukarin
+	url = git@github.com:shoya140/yukarin.git
