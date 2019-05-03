@@ -13,7 +13,7 @@ __pycache__/
 # data
 data/input
 data/input/**
-# data/working/**
-# data/output/**
+data/working/**
+data/output/**
 
 !.gitkeep
