@@ -1,0 +1,1 @@
+docker run -it --rm -v $PWD:/proj akarin python yukarin/train.py data/input/config.json data/working/model/

@@ -10,14 +10,63 @@ $ cd akarin
 $ docker build . -t akarin
 ```
 
-Run
+### Step 1: Convert acoustic feature
+
+Feature calculation
 
 ```
-$ docker run -it --rm -v $PWD:/proj akarin python yukarin/scripts/extract_acoustic_feature.py --input_glob data/sample/speaker-1/\*.wav --output data/working/speaker-1/ --sampling_rate 44100
-$ docker run -it --rm -v $PWD:/proj akarin python yukarin/scripts/extract_acoustic_feature.py --input_glob data/sample/speaker-2/\*.wav --output data/working/speaker-2/ --sampling_rate 44100
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/scripts/extract_acoustic_feature.py \
+    --input_glob data/sample/speaker_1/v_\*.wav \
+    --output data/working/speaker_1_npy/ \
+    --sampling_rate 44100
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/scripts/extract_acoustic_feature.py \
+    --input_glob data/sample/speaker_2/v_\*.wav \
+    --output data/working/speaker_2_npy/ \
+    --sampling_rate 44100
 
-...
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/scripts/extract_align_indexes.py \
+    --input_glob1 data/working/speaker_1_npy/v_\*.npy \
+    --input_glob2 data/working/speaker_2_npy/v_\*.npy \
+    --output data/working/indexes_sample
+
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/scripts/extract_f0_statistics.py \
+    --input_glob data/working/speaker_1_npy/v_\*.npy \
+    --output data/working/speaker_1_f0
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/scripts/extract_f0_statistics.py \
+    --input_glob data/working/speaker_2_npy/v_\*.npy \
+    --output data/working/speaker_2_f0
 ```
+
+Train
+
+```
+WIP!
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python yukarin/train.py \
+    data/sample/config.json \
+    data/working/model_sample/
+```
+
+Test
+
+```
+WIP!
+$ docker run -it --rm -v $PWD:/proj akarin \
+    python convert_acoustic_feature.py \
+    --input_glob data/sample/test/v_\*.wav \
+    --output data/output/sample \
+    --vc_model data/working/model_sample \
+    --vc_config ???
+```
+
+### Step 2: Apply pix2pix
+
+WIP
 
 ## Notice: Using Jupyter Notebook in VCS
 
