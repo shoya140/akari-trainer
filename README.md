@@ -31,21 +31,11 @@ $ docker run -it --rm -v $PWD:/proj akarin \
     --input_glob1 data/working/speaker_1_npy/v_\*.npy \
     --input_glob2 data/working/speaker_2_npy/v_\*.npy \
     --output data/working/indexes_sample
-
-$ docker run -it --rm -v $PWD:/proj akarin \
-    python yukarin/scripts/extract_f0_statistics.py \
-    --input_glob data/working/speaker_1_npy/v_\*.npy \
-    --output data/working/speaker_1_f0
-$ docker run -it --rm -v $PWD:/proj akarin \
-    python yukarin/scripts/extract_f0_statistics.py \
-    --input_glob data/working/speaker_2_npy/v_\*.npy \
-    --output data/working/speaker_2_f0
 ```
 
 Train
 
 ```
-WIP!
 $ docker run -it --rm -v $PWD:/proj akarin \
     python yukarin/train.py \
     data/sample/config.json \
