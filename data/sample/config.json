@@ -9,7 +9,7 @@
       "frame_period": 5,
       "order": 8,
       "pad_second": 0,
-      "sampling_rate": 44100,
+      "sampling_rate": 16000,
       "threshold_db": 25
     },
     "in_features": [
